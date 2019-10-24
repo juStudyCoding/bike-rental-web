@@ -1,0 +1,8 @@
+<h1>{{notice.title}}</h1>
+{% if notice.photo %}
+  <img src="{{notice.photo.url}}" />
+{% endif %}
+{{notice.content|linebreaks}}
+
+
+<!--https://suspected.tistory.com/172-->

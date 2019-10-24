@@ -1,0 +1,172 @@
+@charset "utf-8";
+@import url(normalize.css);
+
+/*reset*/
+ul, ol, dl, figure {padding: 0}
+li {list-style: none;}
+a {text-decoration: none; color: inherit;}
+
+html, body {height: 100%;}
+
+body {
+	background: url(/static/img/bg.png) no-repeat fixed;
+	font: 15px 'Roboto', 'sans-serif';
+	color: #585858;
+}
+h1 {margin: 0;} /*normalize css가 연결되었을 때만 선언*/
+
+/*wrap*/
+#wrap {
+	width: 960px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: -5px 0 25px rgba(0,0,0,0.3), 5px 0 25px rgba(0,0,0,0.3)
+}
+/*header*/
+header {
+	height: 100px;
+	background: #111
+}
+header .logo {
+	float: left;
+	color: #8fd142;
+	line-height: 100px;
+	margin-left: 20px;
+	font-size: 40px;
+	font-weight: bold;
+}
+header nav {float: right;}
+header nav a {
+	position: relative;
+	display: block;
+	float: left;
+	line-height: 100px;
+	margin: 0 20px;
+	font-size: 18px;
+	color: #eee;
+}
+header nav a:before {
+	content: '';
+	position: absolute;
+	top: 30px; left: 0;
+	width: 0;
+	height: 5px;
+	background: #8fd142;
+	transition: all 0.2s;
+}
+header nav a:hover:before {
+	width: 100%;
+}
+.menu{display:none;}
+/*mainImage*/
+#mainImage {
+	height: 640px;
+	background: url("/static/img/route.png") no-repeat center;
+}
+#mainTitle {
+	position: relative;
+	height: 300px;
+	background: #111;
+	text-align: center;
+}
+.titlewrap {
+	position: absolute;
+	top: 50%; left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff
+}
+.titlewrap h1 {
+	font-size: 40px;
+	font-weight: 400;
+}
+.titlewrap .text {
+	opacity: 0.4;
+}
+.btnStart {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	padding: 8px 25px;
+	margin-top: 15px;
+	border-radius: 10px;
+	background: #2ca201;
+	font-size: 22px;
+	color: #fff;
+}
+.btnStart:before {
+	position: absolute;
+	top: 0; left: 0;
+	width: 0;
+	height: 100%;
+	background: #ff3100;
+	transition: all 0.2s;
+	content: '';
+}
+.btnStart:hover:before {width: 100%}
+.btnStart span {
+	position: relative;
+	z-index: 5;
+	/*z-index는 반드시 position 속성과 함께 선언해야함.
+	요소의 크기에 영향을 주지않으면서 positio 속성을 가질 수 잇는 값는 relative 이다.
+	*/
+}
+/*about*/
+#about {background: #eee; padding: 50px 0;}
+#about ul {overflow: hidden;}
+#about li {
+	float: left;
+	width: 25%;
+	padding: 20px;
+	text-align: center;
+	box-sizing: border-box
+}
+#about li img {width: 50px;}
+#about .aboutText {margin-top: 40px;}
+#about li h2 {font-size: 16px; color: #ff2700}
+#about .text {text-align: left}
+
+/*review*/
+#review {
+	padding: 40px;
+	box-sizing: border-box;
+}
+#review h2 {text-align: center; color: #ff4500}
+.reviewList {/*overflow: hidden; */margin-top: 30px; margin-left: -40px; height: 900px;}
+.reviewList li {
+	float: left;
+	width: 266px;
+	height: 400px;
+	margin-left: 40px;
+	margin-bottom: 40px;
+	outline: 5px solid transparent; /*투명한색의 5px*/
+	transition: all 0.2s;
+	box-sizing: border-box;
+}
+.reviewList li:hover {
+	outline-color: #ff3b00
+}
+.reviewList li .pic {
+	width: 100%;
+	height: 340px;
+	overflow: hidden;
+}
+.reviewList .pic img {
+	width: 100%;
+	height: 100%;
+}
+.reviewList .name {
+	line-height: 60px;
+	padding: 0 20px;
+	margin: 0;
+	color: #222;
+	font-size: 18px;
+	background: #eee;
+}
+/*footer*/
+footer {background: #222;}
+footer p {
+	line-height: 70px;
+	color: #bebebe;
+	text-align: center;
+	font-size: 14px;
+}

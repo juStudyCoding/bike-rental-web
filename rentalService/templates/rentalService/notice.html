@@ -1,0 +1,20 @@
+<h1>Notice</h1>
+{% for notice in noticeList %}
+<tr>
+  <td>{{notice.title}}</td>
+  <td>{{notice.updateTime}}</td>
+</tr>
+<br>
+<tr>
+  <td>
+    {% if notice.photo %}
+    <img src="{{notice.photo.url}}" />
+  {% endif %}<br></td>
+  <td>{{notice.content}}</td>
+</tr>
+<br>
+<hr>
+{% endfor %}
+
+
+<!--https://suspected.tistory.com/172-->

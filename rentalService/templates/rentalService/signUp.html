@@ -1,0 +1,30 @@
+<div>
+  <h1> SignUp</h1>
+  <form method="POST" action = "{% url 'signUp' %}">{% csrf_token %}
+    Username:
+    <br>
+    <input id ="username" name="username" type="text">
+    <button id="nameCheck" name="nameCheck">check</button>
+    <input type="hidden" id="checkNum" value=0>
+    {%if result == "fail" %}
+      <br>
+      this username already exists.
+    {%endif%}
+    <br>
+    Password:
+    <br>
+    <input name="password" type="password">
+    <br>
+    Confirm Password:
+    <br>
+    <input name="passwdCheck" type="passwdCheck">
+    <br>
+    Email:
+    <br>
+    <input name="email" type="email" placeholder="ex) abc@rentalservice.com">
+    <br><br>
+      <input type="submit" value="sign up">
+
+    <button><a href="{% url  'home' %}">home</a></button>
+  </form>
+</div>

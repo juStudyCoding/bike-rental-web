@@ -1,0 +1,18 @@
+<h2>home</h2>
+
+<div>
+  {%if user.is_authenticated %}
+    <h2>{{request.session.username}}님 반갑습니다.<h2>
+    <button><a href = "{% url 'logout' %}">로그아웃</a></button>
+    <button><a href = "{% url 'mypage' %}">마이페이지</a></button>
+  {%else%}
+    <button><a href = "{% url 'signUp' %}">회원가입</a></button>
+    <button><a href = "{% url 'login' %}">로그인</a></button>
+  {%endif%}
+  <button><a href = "{% url 'reservation' %}">예약</a></button>
+  <button><a href = "{% url 'weather' %}">날씨</a></button>
+  <button><a href = "{% url 'location' %}">위치, 칼로리소모계산</a></button>
+  <button><a href = "{% url 'notice' %}">공지</a></button>
+  <button><a href = "{% url 'board' %}">한줄평</a></button>
+  <button><a href = "{% url 'contact' %}">연락처</a></button>
+</div>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>J-rentalService</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+  /*datepicer 버튼 롤오버 시 손가락 모양 표시*/
+  .ui-datepicker-trigger{cursor: pointer;}
+  /*datepicer input 롤오버 시 손가락 모양 표시*/
+  .hasDatepicker{cursor: pointer;}
+  </style>
+
+</head>
+<body>
+<div>
+  <h1>reservation</h1>
+  <form method="POST" id="reserform" name="reserform" action = "{% url 'reservation' %}">{% csrf_token %}
+    <p>sort:
+      <select name="sort" id="sort">
+        <option value="bicycle" selected="selected">bicycle</option>
+        <option value="scooter">scooter</option>
+        <option value="board">board</option>
+        <option value="skates">skates</option>
+      </select>
+    </p>
+    <p>quantity: <input type="number" id="quantity" name="quantity" min="1" max="10" required></p>
+    <p>start_date: <input type="text" id="start_date" name="start_date" readonly="readonly"></p>
+    <p>end_date: <input type="text" id="end_date" name="end_date" readonly="readonly"></p>
+    <!--<div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
+    <br>-->
+    <p id ="totaltext" name="totaltext"></p>
+    <input type="hidden" name="total" id="total" />
+    <button id="add" onclick="add()">add</button>
+    <button id="test" onclick="alert($('#total').val())">test</button>
+    <input type="submit" value="reservation">
+    <button><a href="{% url  'home' %}">home</a></button>
+  </form>
+</div>
+</body>
+<script>
+$(document).ready(function(){
+    $( "#start_date" ).datepicker({
+      minDate:0,
+      maxDate:"+1M",
+      dateFormat:'yy-mm-dd',
+      onSelect: function(data){
+        var end_date =   $("#end_date");
+        var start_date= $(this).datepicker('getDate');
+        var min_date= $(this).datepicker('getDate');
+        end_date.datepicker('setDate',min_date);
+        start_date.setDate(start_date.getDate()+30);
+        end_date.datepicker('option','maxDate',start_date);
+        end_date.datepicker('option','minDate',min_date);
+      }
+    });
+    $.datepicker.setDefaults({
+      showOtherMonths: true, //빈 공간에 현재월의 앞뒤 월의 날짜를 표시
+    });
+    $( "#end_date" ).datepicker({dateFormat:'yy-mm-dd' })
+
+  $("#quantity").bind('keyup mouseup', function(){
+    if($("#sort").val().includes("bicycle")){
+      document.getElementById("totaltext").innerHTML ="for one day :"+ $("#quantity").val() * 1000 +"원";
+      document.reserform.total.value=$("#quantity").val() * 1000;
+    }else if($("#sort").val().includes("scooter")){
+      document.getElementById("totaltext").innerHTML ="daily price:"+ $("#quantity").val() * 3000 +"원";
+      document.reserform.total.value=$("#quantity").val() * 3000;
+    }else {
+      document.getElementById("totaltext").innerHTML ="daily price:"+ $("#quantity").val() * 2000 +"원";
+      document.reserform.total.value=$("#quantity").val() * 2000;
+    }
+  });
+
+  $("#sort").change(function(){
+    if($("#sort").val().includes("bicycle")){
+      document.getElementById("totaltext").innerHTML ="daily price:"+ $("#quantity").val() * 1000 +"원";
+      document.reserform.total.value=$("#quantity").val() * 1000;
+    }else if($("#sort").val().includes("scooter")){
+      document.getElementById("totaltext").innerHTML = "daily price:"+ $("#quantity").val() * 3000 +"원";
+      document.reserform.total.value=$("#quantity").val() * 3000;
+    }else {
+      document.getElementById("totaltext").innerHTML = "daily price:"+ $("#quantity").val() * 2000 +"원";
+      document.reserform.total.value=$("#quantity").val() * 2000;
+    }
+  });
+
+});
+</script>

@@ -1,0 +1,22 @@
+<h1>예약완료<h1>
+  <div class="wrap">
+    <h3>예약 목록</h3>
+      <input type="hidden" id = "nums" value="{{nums}}"/>
+      {% for reservation in reservList %}
+      <tr>
+        <td>sort: {{reservation.sort}}</td>
+        <td>quantity: {{reservation.quantity}}</td>
+        <td>date: {{reservation.start_date}} to {{reservation.end_date}}</td>
+        <td>price: {{reservation.total}}</td>
+        <td>예약일: {{reservation.createTime}}</td>
+      </tr>
+      <br>
+      <tr>
+        <br>
+          <a href="{% url 'reservationDelete' deleteKey=reservation.pk %}" onclick="return confirm("정말 취소하시겠습니까?")">예약취소</a>
+      </tr>
+      <br>
+      <hr>
+      {% endfor %}
+      <button><a href="{% url  'home' %}">home</a></button>
+    </div>
